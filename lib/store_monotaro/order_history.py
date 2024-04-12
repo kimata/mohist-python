@@ -228,8 +228,8 @@ def insert_table_item(handle, sheet, row, item, style):
 
         if key == "id":
             sheet.cell(row, col).hyperlink = item["url"]
-        # if key == "no":
-        #     sheet.cell(row, col).hyperlink = store_monotaro.crawler.gen_order_url_from_no(item["no"])
+        if key == "no":
+            sheet.cell(row, col).hyperlink = store_monotaro.crawler.gen_detail_url(item)
 
 
 def setting_table_view(handle, sheet, row_last):

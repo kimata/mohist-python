@@ -185,6 +185,7 @@ def parse_order(handle, order_info):
     item_base = {
         "date": date,
         "no": no,
+        "link_no": order_info["link_no"],
     }
 
     for i in range(1, len(driver.find_elements(By.XPATH, ITEM_XPATH))):
