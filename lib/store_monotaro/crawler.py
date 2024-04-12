@@ -271,6 +271,14 @@ def fetch_order_item_list_by_month_impl(handle, month):
         )
 
     for order_info in order_list:
+        if order_info["link_no"] is None:
+            logging.info(
+                "Canceled order: {date} - {no} [cached]".format(
+                    date=order_info["date"].strftime("%Y-%m-%d"), no=order_info["no"]
+                )
+            )
+            continue
+
         if not store_monotaro.handle.get_order_stat(handle, order_info["no"]):
             fetch_order_item_list_by_order_info(handle, order_info)
         else:
