@@ -318,15 +318,19 @@ def fetch_month_list(handle):
     keep_logged_on(handle)
 
     month_list = list(
-        sorted(
-            map(
-                lambda elem: parse_month(elem.get_attribute("value")),
-                driver.find_elements(
-                    By.XPATH, '//select[@name="targetMonthCmb"]/option[contains(@value, "20")]'
-                ),
-            )
+        map(
+            lambda elem: parse_month(re.match(r".*?(\d{4}-\d{2})", elem.get_attribute("href")).group(1)),
+            driver.find_elements(By.XPATH, '//div[contains(@class, "oder_date")]/a'),
         )
     )
+    month_list += list(
+        map(
+            lambda elem: parse_month(elem.get_attribute("value")),
+            driver.find_elements(By.XPATH, '//select[@name="targetMonthCmb"]/option[contains(@value, "20")]'),
+        )
+    )
+
+    month_list = list(sorted(month_list))
 
     store_monotaro.handle.set_month_list(handle, month_list)
 
