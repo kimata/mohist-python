@@ -101,10 +101,6 @@ def get_item_list(handle):
     return sorted(handle["order"]["item_list"], key=lambda x: x["date"], reverse=True)
 
 
-# def get_last_item(handle, year):
-#     return next(filter(lambda item: item["date"].year == year, get_item_list(handle)), None)
-
-
 def set_month_list(handle, month_list):
     handle["order"]["month_list"] = month_list
 
