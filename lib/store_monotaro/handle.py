@@ -192,14 +192,5 @@ def load_order_info(handle):
     )
 
 
-#     # NOTE: 再開した時には巡回すべきなので削除しておく
-#     for time_filter in [
-#         datetime.datetime.now().year,
-#         get_cache_last_modified(handle).year,
-#     ]:
-#         if time_filter in handle["order"]["page_stat"]:
-#             del handle["order"]["page_stat"][time_filter]
-
-
 def get_progress_bar(handle, desc):
     return handle["progress_bar"][desc]
