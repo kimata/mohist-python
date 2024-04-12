@@ -34,7 +34,7 @@ LOGIN_RETRY_COUNT = 2
 FETCH_RETRY_COUNT = 3
 
 
-def wait_for_loading(handle, xpath='//div[@id="globalMenu"]', sec=2):
+def wait_for_loading(handle, xpath='//div[@id="globalMenu"]', sec=1):
     driver, wait = store_monotaro.handle.get_selenium_driver(handle)
 
     wait.until(EC.visibility_of_all_elements_located((By.XPATH, xpath)))
