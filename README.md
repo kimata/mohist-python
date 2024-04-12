@@ -1,4 +1,4 @@
-# yahist-python
+# mohist-python
 
 mohist-python は，モノタロウの購入履歴を収集し，
 サムネイル付きの Excel 形式で出力するソフトウェアです．
@@ -51,7 +51,7 @@ docker-compose run --rm mohist
 
 ```
 poetry install
-poetry run app/yahist.py
+poetry run app/mohist.py
 ```
 
 ## Windows での動かし方
