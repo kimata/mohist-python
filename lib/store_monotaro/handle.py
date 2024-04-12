@@ -164,12 +164,12 @@ def set_status(handle, status):
         handle["status"].update(status=status, force=True)
 
 
-# def finish(handle):
-#     if "selenium" in handle:
-#         handle["selenium"]["driver"].quit()
-#         handle.pop("selenium")
+def finish(handle):
+    if "selenium" in handle:
+        handle["selenium"]["driver"].quit()
+        handle.pop("selenium")
 
-#     handle["progress_manager"].stop()
+    handle["progress_manager"].stop()
 
 
 def store_order_info(handle):
