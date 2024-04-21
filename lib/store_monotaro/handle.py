@@ -160,7 +160,7 @@ def set_status(handle, status, is_error=False):
 
     if "status" not in handle:
         handle["status"] = handle["progress_manager"].status_bar(
-            status_format="Mohist{fill}{status}{fill}{elapsed}",
+            status_format="モノタロウ{fill}{status}{fill}{elapsed}",
             color=color,
             justify=enlighten.Justify.CENTER,
             status=status,
