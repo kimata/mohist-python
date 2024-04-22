@@ -98,7 +98,7 @@ def get_order_stat(handle, no):
 
 
 def get_item_list(handle):
-    return sorted(handle["order"]["item_list"], key=lambda x: x["date"], reverse=True)
+    return sorted(handle["order"]["item_list"], key=lambda x: x["date"])
 
 
 def set_month_list(handle, month_list):
