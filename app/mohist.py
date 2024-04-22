@@ -40,7 +40,9 @@ def execute(config, is_export_mode=False):
     try:
         if not is_export_mode:
             execute_fetch(handle)
-        store_monotaro.order_history.generate_table_excel(handle, config["output"]["excel"]["table"])
+        store_monotaro.order_history.generate_table_excel(
+            handle, store_monotaro.handle.get_excel_file_path(handle)
+        )
 
         store_monotaro.handle.finish(handle)
     except:
