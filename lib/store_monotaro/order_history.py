@@ -28,54 +28,63 @@ import store_monotaro.crawler
 STATUS_INSERT_ITEM = "[generate] Insert item"
 STATUS_ALL = "[generate] Excel file"
 
+SHOP_NAME = "モノタロウ"
+
 SHEET_DEF = {
-    "SHEET_TITLE": "【モノタロウ】購入",
+    "SHEET_TITLE": "【{shop_name}】購入".format(shop_name=SHOP_NAME),
     "TABLE_HEADER": {
         "row": {
             "pos": 2,
             "height": 80,
         },
         "col": {
+            "shop_name": {
+                "label": "ショップ",
+                "pos": 2,
+                "width": 15,
+                "format": "@",
+                "value": SHOP_NAME,
+            },
             "date": {
                 "label": "日付",
-                "pos": 2,
+                "pos": 3,
                 "width": 23,
                 "format": 'yyyy"年"mm"月"dd"日 ("aaa")"',
             },
             "name": {
                 "label": "商品名",
-                "pos": 3,
+                "pos": 4,
                 "width": 70,
                 "wrap": True,
                 "format": "@",
             },
             "image": {
                 "label": "画像",
-                "pos": 4,
+                "pos": 5,
                 "width": 12,
             },
             "count": {
                 "label": "数量",
-                "pos": 5,
+                "pos": 6,
                 "format": "0_ ",
                 "width": 8,
             },
             "price": {
                 "label": "価格",
-                "pos": 6,
+                "pos": 7,
                 "width": 16,
                 "format": '_ ¥* #,##0_ ;_ ¥* -#,##0_ ;_ ¥* "-"_ ;_ @_ ',  # NOTE: 末尾の空白要
             },
             "category": {
                 "label": "カテゴリ",
-                "pos": 7,
+                "pos": 8,
                 "length": 3,
                 "width": 20,
                 "wrap": True,
             },
             "id": {
                 "label": "商品ID",
-                "pos": 10,
+                "pos": 11,
                 "width": 17,
                 "format": "@",
                 "wrap": True,
@@ -83,7 +92,7 @@ SHEET_DEF = {
             },
             "no": {
                 "label": "注文番号",
-                "pos": 11,
+                "pos": 12,
                 "width": 28,
                 "format": "@",
                 "wrap": True,
@@ -100,13 +109,12 @@ def generate_sheet(handle, book, is_need_thumb=True):
     store_monotaro.handle.set_progress_bar(handle, STATUS_INSERT_ITEM, len(item_list))
 
     local_lib.openpyxl_util.generate_list_sheet(
-        handle,
         book,
         item_list,
         SHEET_DEF,
         is_need_thumb,
         lambda item: store_monotaro.handle.get_thumb_path(handle, item),
-        store_monotaro.handle.set_status,
+        lambda status: store_monotaro.handle.set_status(handle, status),
         lambda: store_monotaro.handle.get_progress_bar(handle, STATUS_ALL).update(),
         lambda: store_monotaro.handle.get_progress_bar(handle, STATUS_INSERT_ITEM).update(),
     )
