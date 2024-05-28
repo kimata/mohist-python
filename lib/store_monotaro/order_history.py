@@ -35,7 +35,7 @@ SHEET_DEF = {
     "TABLE_HEADER": {
         "row": {
             "pos": 2,
-            "height": 80,
+            "height": {"default": 80, "without_thumb": 25},
         },
         "col": {
             "shop_name": {
